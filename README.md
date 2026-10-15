@@ -1,4 +1,4 @@
-# Multimedia
+# MultimediaFull
 
 Proyecto de práctica del Módulo 9 (Desarrollo de Apps profesionales para iOS). Un solo proyecto con un menú de ejemplos; cada día agrega los suyos.
 
@@ -12,25 +12,28 @@ Proyecto de práctica del Módulo 9 (Desarrollo de Apps profesionales para iOS).
 - Patrón: MVVM, con la misma idea de carpetas del módulo 7
 - Requisitos: Xcode con deployment target iOS 17 (usa `@Observable`, `ContentUnavailableView`, `onChange` de dos parámetros y `AVAudioApplication`)
 
-> Estos archivos no se compilaron en Xcode al prepararlos. Compílalos una vez y corrige cualquier ajuste menor de tu versión.
+> Compilado en el simulador con Xcode 26. La cámara, la grabadora y los avisos de AVFoundation (fin de audio, foto capturada) deben probarse en un iPhone real.
 
-## Cómo crear el proyecto en Xcode
+## Cómo abrir el proyecto
+
+1. Clona el repositorio y abre `MultimediaFull.xcodeproj`.
+2. Selecciona un simulador con iOS 17 o superior y presiona Run.
+
+El proyecto usa carpetas sincronizadas (Xcode 16+): cualquier archivo nuevo dentro de `MultimediaFull/` se agrega solo al target. Los sonidos (`Recursos/`) y los permisos de micrófono y cámara ya están configurados.
+
+## Cómo crear el proyecto desde cero (para clase)
 
 1. File > New > Project > iOS > App.
-2. Product Name: `Multimedia`. Interface: SwiftUI. Language: Swift. Storage: None. Guarda el proyecto.
-3. En el navegador de Xcode, borra `MultimediaApp.swift` y `ContentView.swift` (Move to Trash).
-4. Selecciona el proyecto > target Multimedia > General > Minimum Deployments: iOS 17.0.
-5. Arrastra desde Finder `MultimediaApp.swift` y las cuatro carpetas de `Fuentes/` (`Models`, `Services`, `ViewModels`, `Views`) al grupo `Multimedia` del navegador. En el cuadro: Copy items if needed activado, Create groups seleccionado y el target Multimedia marcado.
-6. Arrastra los tres archivos de `Recursos/` (`campana.wav`, `melodia.wav`, `pulso.wav`) al mismo grupo, con las mismas opciones. Los usa el reproductor de audio del día 2.
-7. Permisos (target Multimedia > pestaña Info > Custom iOS Target Properties, botón +):
-   - `Privacy - Microphone Usage Description`: "Para grabar notas de voz." (día 2, grabadora)
-   - `Privacy - Camera Usage Description`: "Para tomar fotos desde la app." (día 3, cámara)
-8. Product > Run en un simulador con iOS 17 o superior.
+2. Product Name: `MultimediaFull`. Interface: SwiftUI. Language: Swift. Storage: None.
+3. Target > General > Minimum Deployments: iOS 17.0. Borra `ContentView.swift`.
+4. Crea las carpetas `Models`, `Services`, `ViewModels` y `Views`, y agrega los archivos de cada día siguiendo los documentos del módulo.
+5. Arrastra los tres sonidos de `Recursos/` (`campana.wav`, `melodia.wav`, `pulso.wav`) con el target marcado.
+6. Permisos (target > pestaña Info): `Privacy - Microphone Usage Description` ("Para grabar notas de voz.") y `Privacy - Camera Usage Description` ("Para tomar fotos desde la app.").
 
 ## Estructura
 
 ```
-Multimedia/
+MultimediaFull/
 ├── MultimediaApp.swift
 ├── Models/
 │   ├── Filtro.swift
@@ -92,7 +95,7 @@ Multimedia/
     └── VozView.swift
 ```
 
-Los archivos de `Recursos/` se agregan al mismo grupo `Multimedia`.
+Los sonidos viven en `Recursos/`, dentro de `MultimediaFull/`.
 
 ## Qué va en cada carpeta
 
